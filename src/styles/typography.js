@@ -6,9 +6,9 @@ import theme from "./theme";
 
 export default {
   display4: {
-    fontSize: 16,
+    fontSize: 40,
     lineHeight: 128,
-    ...systemWeights.light,
+    ...systemWeights.semibold,
     letterSpacing: Platform.OS === "ios" ? sanFranciscoSpacing(112) : undefined,
     color: theme.colors.text,
   },
@@ -40,6 +40,11 @@ export default {
     letterSpacing: Platform.OS !== "ios" ? sanFranciscoSpacing(24) : undefined,
     color: theme.colors.text,
   },
+  bold: {
+    ...systemWeights.regular,
+    letterSpacing: Platform.OS !== "ios" ? sanFranciscoSpacing(24) : undefined,
+    color: theme.colors.text,
+  },
   title: {
     fontSize: 18,
     lineHeight: 28,
@@ -57,7 +62,7 @@ export default {
   body2: {
     fontSize: 14,
     lineHeight: 24,
-    ...systemWeights.semibold,
+    ...systemWeights.light,
     letterSpacing: Platform.OS === "ios" ? sanFranciscoSpacing(14) : undefined,
     color: theme.colors.text,
   },

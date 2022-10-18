@@ -1,0 +1,1 @@
+// export {default as Group11} from './group11.svg';
