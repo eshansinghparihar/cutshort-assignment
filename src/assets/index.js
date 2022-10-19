@@ -17,3 +17,6 @@ export {default as Group40} from './group40.svg';
 export {default as Group41} from './group41.svg';
 export {default as Group42} from './group42.svg';
 export {default as Rectangle264} from './rectangle264.svg';
+export {default as Vector36} from './vector36.svg';
+export {default as Group31} from './group31.svg';
+export {default as Back} from './back.svg';

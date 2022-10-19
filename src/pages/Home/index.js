@@ -18,10 +18,10 @@ export default class Home extends React.Component {
     this.state = {
       isLoading: false,
     };
-    this.navigateToDashboard = this.navigateToDashboard.bind(this);
+    this.navigateToRequestMoney = this.navigateToRequestMoney.bind(this);
   }
-  navigateToDashboard() {
-    this.props.navigation.navigate("Dashboard");
+  navigateToRequestMoney() {
+    this.props.navigation.navigate("MoneyRequest");
   }
   render() {
     return (
@@ -43,7 +43,7 @@ export default class Home extends React.Component {
             ₦ 200,000
           </Text>
           <View style={[styles.buttonGroup]}>
-          <TouchableOpacity style={[styles.button]}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.button]} onPress={()=>this.navigateToRequestMoney()}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
           <TouchableOpacity style={[styles.button]}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
           </View>
           <View style={[styles.listContainer]}>
