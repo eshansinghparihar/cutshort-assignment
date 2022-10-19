@@ -19,9 +19,13 @@ export default class Home extends React.Component {
       isLoading: false,
     };
     this.navigateToRequestMoney = this.navigateToRequestMoney.bind(this);
+    this.navigateToSearchRecipient=this.navigateToSearchRecipient.bind(this);
   }
   navigateToRequestMoney() {
     this.props.navigation.navigate("MoneyRequest");
+  }
+  navigateToSearchRecipient() {
+    this.props.navigation.navigate("SearchRecipient");
   }
   render() {
     return (
@@ -44,7 +48,7 @@ export default class Home extends React.Component {
           </Text>
           <View style={[styles.buttonGroup]}>
           <TouchableOpacity style={[styles.button]} onPress={()=>this.navigateToRequestMoney()}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
-          <TouchableOpacity style={[styles.button]}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.button]} onPress={()=>this.navigateToSearchRecipient()}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
           </View>
           <View style={[styles.listContainer]}>
           <View style={styles.sliderButton}>
