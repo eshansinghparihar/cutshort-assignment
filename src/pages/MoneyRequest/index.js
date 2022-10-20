@@ -7,7 +7,6 @@ import layout from "../../styles/layout";
 import typography from "../../styles/typography";
 import styles from "./styles";
 import HeaderMoneyRequest from "../../components/MoneyRequest/HeaderMoneyRequest";
-import BackGroundDesign from "../../components/MoneyRequest/BackGroundDesign";
 import ProfilePicture from "../../components/MoneyRequest/ProfilePicture";
 import Button from '../../components/MoneyRequest/Button';
 import { Vector36 } from 'svg';
