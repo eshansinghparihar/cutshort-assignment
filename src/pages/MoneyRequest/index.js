@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  Dimensions,
   Text,
   StyleSheet,
   TouchableOpacity
@@ -11,48 +10,50 @@ import layout from "../../styles/layout";
 import { Vector36, Group31, Back } from 'svg';
 import typography from "../../styles/typography";
 import { white } from "../../styles/colors";
-const { width } = Dimensions.get("window");
-export default class MoneyRequest extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false,
-    };
-    this.navigateBack = this.navigateBack.bind(this);
+export default function MoneyRequest(props){
+  function navigateBack() {
+    props.navigation.navigate("Home");
   }
-  navigateBack() {
-    this.props.navigation.navigate("Home");
+  function Header(){
+    return<View style={[styles.headerText]}>
+    <Text style={styles.header}>New Request</Text>
+    <TouchableOpacity onPress={()=>navigateBack()}><Back style={styles.back}/></TouchableOpacity>
+    </View>
   }
-  render() {
+  function backGroundDesign(){
+    return <View style={[styles.bgVector]}>
+    <Vector36/>
+    </View>
+  }
+  function profilePicture(){
+    return <View style={[styles.profilePicture]}>
+    <Group31/>
+  </View>
+  }
+  function buttons(){
+    return <View style={[styles.buttonGroup]}>
+    <TouchableOpacity style={[styles.button, styles.sendBtn]}><Text style={[styles.text, styles.white, styles.buttonText]}>Send money</Text></TouchableOpacity>
+    <TouchableOpacity style={[styles.button, styles.dontSendBtn]}><Text style={[styles.accent,styles.text, styles.buttonText]}>Don't send</Text></TouchableOpacity>
+    </View>
+  }
     return (
       <View style={[layout.safeArea, styles.backgroundStyle]}>
-          <View style={[styles.headerText]}>
-          <Text style={styles.header}>New Request</Text>
-          <TouchableOpacity onPress={()=>this.navigateBack()}><Back style={styles.back}/></TouchableOpacity>
-          </View>
-          <View style={[styles.bgVector]}>
-            <Vector36/>
-          </View>
-          <View style={[styles.profilePicture]}>
-            <Group31/>
-          </View>
-          <Text style={[styles.name, styles.text, styles.white]}>
-            Adeleke Ramon
-          </Text>
-          <Text style={[styles.message, styles.text, styles.white]}>
-            is requesting for
-          </Text>
-          <Text style={[typography.display4, styles.textBal]}>
-            ₦ 200,000
-          </Text>
-          <View style={[styles.buttonGroup]}>
-          <TouchableOpacity style={[styles.button, styles.sendBtn]}><Text style={[styles.text, styles.white, styles.buttonText]}>Send money</Text></TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.dontSendBtn]}><Text style={[styles.accent,styles.text, styles.buttonText]}>Don't send</Text></TouchableOpacity>
-          </View>
+        {Header()}
+        {backGroundDesign()}
+        {profilePicture()}
+        <Text style={[styles.name, styles.text, styles.white]}>
+        Adeleke Ramon
+        </Text>
+        <Text style={[styles.message, styles.text, styles.white]}>
+        is requesting for
+        </Text>
+        <Text style={[typography.display4, styles.textBal]}>
+        ₦ 200,000
+        </Text>
+        {buttons()}
       </View>
     );
   }
-}
 const styles = StyleSheet.create({
   headerText:{
     display:'flex',
@@ -126,8 +127,8 @@ const styles = StyleSheet.create({
   lineHeight:21
   },
   textBal:{
-    top:60,
-    left:100,
+    top:40,
+    left:95,
     fontWeight:'900',
     color:white
   },

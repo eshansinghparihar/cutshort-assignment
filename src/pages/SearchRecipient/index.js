@@ -11,85 +11,108 @@ const { height, width } = Dimensions.get("window");
 import {Person1, Person2, Person3, Person4, Person5, Person6, Rectangle264, ProfilePic, Back} from 'svg';
 import { accent, primary, white } from "../../styles/colors";
 import { TextInput } from "react-native-gesture-handler";
-export default class SearchRecipient extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false,
-      textInput:''
-    };
-    this.navigateBack = this.navigateBack.bind(this);
+
+export default function SearchRecipient(props){
+  function navigateBack() {
+   props.navigation.navigate("Home");
   }
-  navigateBack() {
-    this.props.navigation.navigate("Home");
+  function Header(){
+      return <View style={[styles.headerText]}>
+        {searchBar()}
+        {backButton()}
+        </View>
   }
-  render() {
+  function backButton(){
+    return <TouchableOpacity onPress={()=>navigateBack()}><Back style={styles.back}/></TouchableOpacity>
+  }
+  function searchBar(){
+    return <View ><TextInput style={[styles.buttonBorder, styles.header]}></TextInput></View>
+  }
+  function searchCircles(){
+    return <View style={styles.circlesContainer}>
+    <View style={styles.circle_1} />
+    <View style={styles.circle_2} />
+    <View style={styles.circle_3} />
+    </View>
+  }
+  function people(){
+    return <View style={[styles.peopleContainer]}>
+    <View style={[ styles.person1]}>
+    <Person1/>
+    <Text style={[styles.name, styles.peopleName]}>
+    Adedoyin Leke
+    </Text>
+    </View>
+    <View style={[ styles.person2]}>
+    <Person2/>
+    <Text style={[styles.name, styles.peopleName]}>
+    Adelaide Uti (son)
+    </Text>
+    </View>
+    <View style={[ styles.person3]}>
+    <Person3/>
+    <Text style={[styles.name, styles.peopleName]}>
+    Adolph colleague
+    </Text>
+    </View>
+    <View style={[ styles.person4]}>
+    <Person4/>
+    <Text style={[styles.name, styles.peopleName]}>
+    Aduni Wale
+    </Text>
+    </View>
+    <View style={[ styles.person5]}>
+    <Person5/>
+    <Text style={[styles.name, styles.peopleName]}>
+    Adedoyin Leke
+    </Text>
+    </View>
+    <View style={[ styles.person6]}>
+    <Person6/>
+    <Text style={[styles.name, styles.peopleName1]}>
+    Adeleke Adeyanju
+    </Text>
+    </View>
+    </View>
+  }
+  function profilePic(){
+    return <View style={[styles.profilepic]}>
+    <ProfilePic/>
+  </View>
+  }
+  function profileName(){
+    return <Text style={[styles.name, styles.profileName]}>
+    Adeleke Adeyanju
+  </Text>
+  }
+  function contactInfo(){
+    return <Text style={[styles.name, styles.number]}>
+    (+234) 905 1694 275
+  </Text>
+  }
+  function button(){
+    return <TouchableOpacity style={[styles.button, styles.continue]}><Text style={[styles.text, styles.white, styles.buttonText]}>Continue</Text></TouchableOpacity>
+  }
+  function scrollContainer(){
+    return <View style={[styles.container]}>
+    <View style={styles.sliderButton}>
+       <Rectangle264/>
+     </View>
+     {profilePic()}
+     {profileName()}
+     {contactInfo()}
+     {button()}
+    </View>
+  }
     return (
       <View style={[layout.safeArea, styles.backgroundStyle]}>
-        <View style={[styles.headerText]}>
-        <View ><TextInput style={[styles.buttonBorder, styles.header]}></TextInput></View>
-        <TouchableOpacity onPress={()=>this.navigateBack()}><Back style={styles.back}/></TouchableOpacity>
-        </View>
-        <View style={styles.circlesContainer}>
-        <View style={styles.circle_1} />
-        <View style={styles.circle_2} />
-        <View style={styles.circle_3} />
-        </View>
-         <View style={[styles.people, styles.person1]}>
-          <Person1/>
-          <Text style={[styles.name, styles.peopleName]}>
-          Adedoyin Leke
-          </Text>
-        </View>
-         <View style={[styles.people, styles.person2]}>
-          <Person2/>
-          <Text style={[styles.name, styles.peopleName]}>
-          Adelaide Uti (son)
-          </Text>
-          </View>
-          <View style={[styles.people, styles.person3]}>
-          <Person3/>
-          <Text style={[styles.name, styles.peopleName]}>
-          Adolph colleague
-          </Text>
-          </View>
-          <View style={[styles.people, styles.person4]}>
-          <Person4/>
-          <Text style={[styles.name, styles.peopleName]}>
-          Aduni Wale
-          </Text>
-          </View>
-          <View style={[styles.people, styles.person5]}>
-          <Person5/>
-          <Text style={[styles.name, styles.peopleName]}>
-          Adedoyin Leke
-          </Text>
-          </View>
-          <View style={[styles.people, styles.person6]}>
-          <Person6/>
-          <Text style={[styles.name, styles.peopleName1]}>
-          Adeleke Adeyanju
-          </Text>
-          </View>
-         <View style={[styles.container]}>
-         <View style={styles.sliderButton}>
-            <Rectangle264/>
-          </View>
-          <View style={[styles.profilepic]}>
-            <ProfilePic/>
-          </View>
-          <Text style={[styles.name, styles.profileName]}>
-            Adeleke Adeyanju
-          </Text>
-          <Text style={[styles.name, styles.number]}>
-            (+234) 905 1694 275
-          </Text>
-          <TouchableOpacity style={[styles.button, styles.continue]}><Text style={[styles.text, styles.white, styles.buttonText]}>Continue</Text></TouchableOpacity>
-         </View>
+        {Header()}
+        {searchCircles()}
+        {people()}
+        {scrollContainer()}
       </View>
     );
   }
-}
 const styles = StyleSheet.create({
   backgroundStyle: {
     width: "100%",
@@ -123,42 +146,45 @@ const styles = StyleSheet.create({
     top:35,
     left:20
   },
-  people:{
+  peopleContainer:{
     position:'absolute'
   },
+  people:{
+    // position:'relative'
+  },
   person1:{
-    top:138,
-    left:169,
+    top:118,
+    left:189,
     width:36,
     height:36
   },
   person2:{
-    top:191,
-    left:57,
+    top:121,
+    left:77,
     width:36,
     height:36
   },
   person3:{
-    top:378,
+    top:280,
     left:90,
     width:36,
     height:36
   },
   person4:{
-    top:418,
-    left:169,
+    top:320,
+    left:189,
     width:36,
     height:36
   },
   person5:{
-    top:309,
-    left:349,
+    top:240,
+    left:300,
     width:36,
     height:36
   },
   person6:{
-    top:227,
-    left:237,
+    top:50,
+    left:300,
     width:72,
     height:72
   },

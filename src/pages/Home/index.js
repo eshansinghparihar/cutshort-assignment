@@ -12,61 +12,70 @@ import { Group11, Group37, Group40, Group41, Group42 ,Rectangle264} from 'svg';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import typography from '../../styles/typography'
 const { width, height } = Dimensions.get("window");
-export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false,
-    };
-    this.navigateToRequestMoney = this.navigateToRequestMoney.bind(this);
-    this.navigateToSearchRecipient=this.navigateToSearchRecipient.bind(this);
+export default function Home(props) {
+  function navigateToRequestMoney() {
+    props.navigation.navigate("MoneyRequest");
   }
-  navigateToRequestMoney() {
-    this.props.navigation.navigate("MoneyRequest");
+  function navigateToSearchRecipient() {
+    props.navigation.navigate("SearchRecipient");
   }
-  navigateToSearchRecipient() {
-    this.props.navigation.navigate("SearchRecipient");
-  }
-  render() {
+    function displayAllTransaction(){
+      const transaction=[<Group37/>, <Group40/>, <Group41/>, <Group42/>]
+      const list=[]
+      for(i=0;i<transaction.length;i++)
+      {
+        const element=(i%2)?<TouchableOpacity key={i}><View style={[styles.element, styles.odd]}>{transaction[i]}</View></TouchableOpacity>:<TouchableOpacity key={i}><View style={[styles.element, styles.even]}>{transaction[i]}</View></TouchableOpacity>
+        list.push(element)
+      }
+      return list
+    }
+    function Header() {
+      return <View style={[styles.headerTop]}>
+        <View style={[styles.bread]}>
+          <TouchableOpacity><Group11 /></TouchableOpacity>
+        </View>
+        <Text style={[typography.headline, styles.text]}>Hello Sandra,</Text>
+        <View style={[styles.topLeft]}>
+          <TouchableOpacity style={[styles.addMoneyBtn]}><Text style={[styles.btnText, styles.textButton]}>Add money</Text></TouchableOpacity>
+        </View>
+      </View>;
+    }
+    function Controls(){
+      console.log()
+      return(<View style={[styles.controls]}>
+        <Text style={[typography.subheading, styles.textMsg]}>
+          Your current balance is
+        </Text>
+        <Text style={[typography.display4, styles.textBal]}>
+          ₦ 200,000
+        </Text>
+        <View style={[styles.buttonGroup]}>
+        <TouchableOpacity style={[styles.button]} onPress={()=>navigateToRequestMoney()}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
+        <TouchableOpacity style={[styles.button]} onPress={()=>navigateToSearchRecipient()}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
+        </View>
+        </View>)
+    }
+    function Container(){
+      return <View style={[styles.listContainer]}>
+      <View style={styles.sliderButton}>
+        <Rectangle264/>
+      </View>
+      <Text style={[typography.body, styles.headingSlider]}>All Transactions</Text>
+      <ScrollView style={[styles.scroll]}>
+      {displayAllTransaction()}
+      </ScrollView>
+      </View>
+    }
+
     return (
       <View style={[layout.safeArea, styles.backgroundStyle]}>
-          <View style={[styles.headerTop]}>
-          <View style={[styles.bread]}>
-            <TouchableOpacity><Group11/></TouchableOpacity>
-          </View>
-          <Text style={[typography.headline, styles.text]}>Hello Sandra,</Text>
-          <View style={[styles.topLeft]}>
-          <TouchableOpacity style={[styles.addMoneyBtn]}><Text style={[styles.btnText, styles.textButton]}>Add money</Text></TouchableOpacity>
-          </View>
-          </View>
-          <View style={[styles.controls]}>
-          <Text style={[typography.subheading, styles.textMsg]}>
-            Your current balance is
-          </Text>
-          <Text style={[typography.display4, styles.textBal]}>
-            ₦ 200,000
-          </Text>
-          <View style={[styles.buttonGroup]}>
-          <TouchableOpacity style={[styles.button]} onPress={()=>this.navigateToRequestMoney()}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
-          <TouchableOpacity style={[styles.button]} onPress={()=>this.navigateToSearchRecipient()}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
-          </View>
-          <View style={[styles.listContainer]}>
-          <View style={styles.sliderButton}>
-            <Rectangle264/>
-          </View>
-          <Text style={[typography.body, styles.headingSlider]}>All Transactions</Text>
-          <ScrollView style={[styles.scroll]}>
-          <TouchableOpacity><View style={[styles.element, styles.odd]}><Group37/></View></TouchableOpacity>
-          <TouchableOpacity><View style={[styles.element, styles.even]}><Group40/></View></TouchableOpacity>
-          <TouchableOpacity><View style={[styles.element, styles.odd]}><Group41/></View></TouchableOpacity>
-          <TouchableOpacity><View style={[styles.element, styles.even]}><Group42/></View></TouchableOpacity>
-          <TouchableOpacity><View style={[styles.element, styles.odd]}><Group37/></View></TouchableOpacity>
-          </ScrollView>
-          </View>
-      </View>
+          {Header()}
+          {Controls()}
+          {Container()}
       </View>
     );
-  }
+
+    
 }
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -148,9 +157,9 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     position: 'absolute',
-    height: 0.6*height,
+    height: 0.55*height,
     left: 0,
-    top:0.4*height,
+    top:0.45*height,
     width:width,
     backgroundColor:accent,
     borderRadius:50
