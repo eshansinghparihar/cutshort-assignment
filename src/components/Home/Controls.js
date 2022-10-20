@@ -17,8 +17,8 @@ export default function Controls(props){
       ₦ 200,000
     </Text>
     <View style={[styles.buttonGroup]}>
-    <TouchableOpacity style={[styles.button]} onPress={navigateToRequestMoney}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
-    <TouchableOpacity style={[styles.button]} onPress={navigateToSearchRecipient}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
+    <TouchableOpacity style={[styles.button]} onPress={()=>navigateToRequestMoney()}><Text style={[typography.title, styles.accent]}>Request money</Text></TouchableOpacity>
+    <TouchableOpacity style={[styles.button]} onPress={()=>navigateToSearchRecipient()}><Text style={[typography.title, styles.accent]}>Send money</Text></TouchableOpacity>
     </View>
     </View>)
 }
